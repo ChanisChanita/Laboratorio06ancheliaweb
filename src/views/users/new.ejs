@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Usuario</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body { background: #f3f6fa; }
+    .custom-nav { background: linear-gradient(90deg, #00bfae 0%, #1976d2 100%); }
+    .btn-main {
+      background: linear-gradient(90deg, #1976d2 60%, #00bfae 100%);
+      color: #fff;
+      font-weight: bold;
+      border-radius: 25px;
+      box-shadow: 0 2px 8px #1976d2aa;
+    }
+    .btn-main:hover { background: #00bfae; }
+    .card { margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <nav class="custom-nav">
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo center">Social Media</a>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title teal-text">Crear Usuario</span>
+            <% if (typeof error !== "undefined") { %>
+              <p class="red-text"><%= error %></p>
+            <% } %>
+            <% if (typeof success !== "undefined") { %>
+              <p class="green-text">Usuario creado correctamente</p>
+            <% } %>
+            <form action="/users" method="POST">
+              <div class="input-field">
+                <input id="name" name="name" type="text" required>
+                <label for="name">Nombre</label>
+              </div>
+              <div class="input-field">
+                <input id="lastName" name="lastName" type="text" required>
+                <label for="lastName">Apellido</label>
+              </div>
+              <div class="input-field">
+                <input id="email" name="email" type="email" required>
+                <label for="email">Correo electrónico</label>
+              </div>
+              <div class="input-field">
+                <input id="age" name="age" type="number" required min="18">
+                <label for="age">Edad</label>
+              </div>
+              <div class="input-field">
+                <input id="phoneNumber" name="phoneNumber" type="text">
+                <label for="phoneNumber">Teléfono</label>
+              </div>
+              <div class="input-field">
+                <input id="password" name="password" type="password" required minlength="8">
+                <label for="password">Contraseña</label>
+              </div>
+              <div class="center-align">
+                <button type="submit" class="btn btn-main waves-effect waves-light">
+                  <i class="material-icons left">person_add</i> Crear
+                </button>
+                <a href="/" class="btn-flat">Cancelar</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

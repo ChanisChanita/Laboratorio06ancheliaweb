@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Nuevo Post</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body { background: #f3f6fa; }
+    .custom-nav { background: linear-gradient(90deg, #00bfae 0%, #1976d2 100%); }
+    .btn-main {
+      background: linear-gradient(90deg, #1976d2 60%, #00bfae 100%);
+      color: #fff;
+      font-weight: bold;
+      border-radius: 25px;
+      box-shadow: 0 2px 8px #1976d2aa;
+    }
+    .btn-main:hover { background: #00bfae; }
+    .card { margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <nav class="custom-nav">
+    <div class="nav-wrapper">
+      <a href="/posts" class="brand-logo center">Social Media</a>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title teal-text">Crear Nuevo Post</span>
+            <form action="/posts" method="POST">
+              <div class="input-field">
+                <input id="title" name="title" type="text" required minlength="5" maxlength="30">
+                <label for="title">Título</label>
+              </div>
+              <div class="input-field">
+                <textarea id="content" name="content" class="materialize-textarea" required minlength="10"></textarea>
+                <label for="content">Contenido</label>
+              </div>
+              <div class="input-field">
+                <input id="hashtags" name="hashtags" type="text">
+                <label for="hashtags">Hashtags (separados por coma)</label>
+              </div>
+              <div class="input-field">
+                <input id="imageUrl" name="imageUrl" type="text">
+                <label for="imageUrl">URL de la imagen</label>
+              </div>
+              <div class="input-field">
+                <select name="user" required>
+                  <option value="" disabled selected>Selecciona un usuario</option>
+                  <% users.forEach(u => { %>
+                    <option value="<%= u._id %>"><%= u.name %> <%= u.lastName %> (<%= u.email %>)</option>
+                  <% }) %>
+                </select>
+                <label>Usuario</label>
+              </div>
+              <div class="center-align">
+                <button type="submit" class="btn btn-main waves-effect waves-light">
+                  <i class="material-icons left">add_circle</i> Crear
+                </button>
+                <a href="/posts" class="btn-flat">Cancelar</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('select');
+      M.FormSelect.init(elems);
+    });
+  </script>
+</body>
+</html>
